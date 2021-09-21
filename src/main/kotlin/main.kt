@@ -1,3 +1,5 @@
+// файл main.kt
+
 import jetbrains.letsPlot.export.ggsave
 import jetbrains.letsPlot.geom.geomLine
 import jetbrains.letsPlot.geom.geomPoint
