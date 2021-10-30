@@ -1,9 +1,7 @@
 // файл main.kt
 
 import jetbrains.letsPlot.export.ggsave
-import jetbrains.letsPlot.geom.geomLine
-import jetbrains.letsPlot.geom.geomPoint
-import jetbrains.letsPlot.geom.geomSmooth
+import jetbrains.letsPlot.geom.*
 import jetbrains.letsPlot.letsPlot
 
 fun main() {
@@ -34,6 +32,24 @@ fun main() {
             geomSmooth() { x = "xvals"; y = "yvals"}
 
     ggsave(fig_2, "plot_2.png")
+
+    // ещё одна картинка - heat map
+    val xs_3 = ArrayList<Double>()
+    val ys_3 = ArrayList<Double>()
+    val zs_3 = ArrayList<Double>()
+    for (i in 1..10) {
+        for (j in 1..7) {
+            xs_3.add(i.toDouble())
+            ys_3.add(j.toDouble())
+            zs_3.add((i + j).toDouble())
+        }
+    }
+    val data_3 = mapOf<String, Any>("xs" to xs_3, "ys" to ys_3, "zs" to zs_3)
+    val fig_3 = letsPlot(data_3) +
+            // something wring with `geomRaster'?
+            geomTile() {x = "xs"; y = "ys"; fill = "zs"}
+
+    ggsave(fig_3, "plot_3.png")
 
     println("bye!")
 }
